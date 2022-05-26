@@ -79,35 +79,35 @@ function Advanced() {
         href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
         rel="stylesheet"
       />
-      <h1>React Tinder Card</h1>
-      <div className="cardContainer">
+      <h1>Disintigrator CardStack</h1>
+      <div >
         {testItems.map(({ title, url, summary }, index) => (
           <TinderCard
             ref={childRefs[index]}
-            className="swipe"
+            
             key={title}
             onSwipe={(dir) => swiped(dir, title, index)}
             onCardLeftScreen={() => outOfFrame(title, index)}
           >
-            <div className="card text-black flex flex-col gap-8">
-              <h2 className="whitespace-pre-wrap">{title}</h2>
-              <p className="whitespace-pre-wrap">{summary}</p> 
-              <a
-                className="flex items-start gap-1"
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open
-                <span className="pt-1">
-                  <RiExternalLinkLine />
-                </span>
-              </a>
-            </div>
+            <div style={{display: index !== currentIndex ? 'none':'block'}} className={`relative border flex flex-col gap-8 `}>
+      <h2 className="whitespace-pre-wrap">{title}</h2>
+      <p className="whitespace-pre-wrap">{summary}</p>
+      <a
+        className="flex items-start gap-1"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open
+        <span className="pt-1">
+          <RiExternalLinkLine />
+        </span>
+      </a>
+    </div>
           </TinderCard>
         ))}
       </div>
-      <div className="buttons">
+      <div >
         <button
           style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
           onClick={() => swipe("left")}
@@ -128,11 +128,11 @@ function Advanced() {
         </button>
       </div>
       {lastDirection ? (
-        <h2 key={lastDirection} className="infoText">
+        <h2 key={lastDirection} >
           You swiped {lastDirection}
         </h2>
       ) : (
-        <h2 className="infoText">
+        <h2 >
           Swipe a card or press a button to get Restore Card button visible!
         </h2>
       )}
